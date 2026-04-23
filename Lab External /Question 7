@@ -1,0 +1,62 @@
+7. Queries using Aggregate functions, GROUP BY, HAVING and Creation and dropping of Views
+
+
+Aggregate Functions, GROUP BY, HAVING & Views
+1. Aim
+
+To perform SQL queries using aggregate functions, GROUP BY, HAVING, and to create and drop views.
+
+2. Theory
+Aggregate Functions → Perform calculations on multiple rows (COUNT, SUM, AVG, MAX, MIN)
+GROUP BY → Groups rows for aggregation
+HAVING → Filters grouped data
+View → A virtual table created from a query
+3. Program / Procedure
+Step 1: Create Table
+CREATE TABLE Student (
+    RollNo INT PRIMARY KEY,
+    Name VARCHAR(30),
+    Dept VARCHAR(10),
+    Marks INT
+);
+Step 2: Insert Data
+INSERT INTO Student VALUES (101, 'Ravi', 'CSE', 85);
+INSERT INTO Student VALUES (102, 'Anu', 'ECE', 78);
+INSERT INTO Student VALUES (103, 'Kiran', 'CSE', 92);
+INSERT INTO Student VALUES (104, 'Sita', 'ECE', 88);
+INSERT INTO Student VALUES (105, 'Ram', 'EEE', 70);
+4. Queries
+a) Aggregate Functions
+SELECT COUNT(*) FROM Student;
+SELECT AVG(Marks) FROM Student;
+SELECT MAX(Marks) FROM Student;
+SELECT MIN(Marks) FROM Student;
+b) GROUP BY
+
+Department-wise average marks
+
+SELECT Dept, AVG(Marks) AS AvgMarks
+FROM Student
+GROUP BY Dept;
+c) HAVING
+
+Departments with average marks > 80
+
+SELECT Dept, AVG(Marks) AS AvgMarks
+FROM Student
+GROUP BY Dept
+HAVING AVG(Marks) > 80;
+d) CREATE VIEW
+CREATE VIEW Top_Students AS
+SELECT RollNo, Name, Marks
+FROM Student
+WHERE Marks > 80;
+e) Display View
+SELECT * FROM Top_Students;
+f) DROP VIEW
+DROP VIEW Top_Students;
+5. Output (What to Write)
+Aggregate functions calculated successfully
+GROUP BY grouped data correctly
+HAVING filtered grouped results
+View created, displayed, and dropped successfully
