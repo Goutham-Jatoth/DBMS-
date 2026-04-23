@@ -1,0 +1,109 @@
+2. Relational Model
+
+
+
+
+1. Introduction
+
+The Relational Model is the most widely used data model in DBMS.
+It represents data in the form of tables (relations) consisting of rows and columns.
+
+2. Definition
+
+The Relational Model, proposed by E. F. Codd in 1970, organizes data into relations (tables) where:
+
+Rows are called tuples
+Columns are called attributes
+3. Basic Concepts
+a) Relation (Table)
+
+A relation is a table with rows and columns.
+👉 Example: Student table
+
+b) Tuple (Row)
+
+A tuple represents a single record.
+👉 Example: (101, Ravi, CSE)
+
+c) Attribute (Column)
+
+An attribute represents a property of a relation.
+👉 Example: RollNo, Name, Dept
+
+d) Domain
+
+A domain is the set of allowed values for an attribute.
+👉 Example: Age → Only integers
+
+e) Degree and Cardinality
+Degree: Number of columns
+Cardinality: Number of rows
+4. Keys in Relational Model
+a) Super Key
+
+A set of attributes that uniquely identifies a tuple.
+
+b) Candidate Key
+
+Minimal super key.
+
+c) Primary Key
+
+Chosen candidate key used to identify records.
+
+d) Foreign Key
+
+An attribute that refers to the primary key of another table.
+
+5. Integrity Constraints
+a) Entity Integrity
+
+Primary key cannot be NULL.
+
+b) Referential Integrity
+
+Foreign key must match a primary key or be NULL.
+
+c) Domain Constraint
+
+Values must be within the defined domain.
+
+6. Properties of Relational Model
+No duplicate rows
+Each cell contains atomic values
+Each column has a unique name
+Order of rows and columns does not matter
+7. Example
+Student Table
+RollNo	Name	Dept
+101	Ravi	CSE
+102	Anu	ECE
+RollNo → Primary Key
+Dept → Attribute
+Another Table (Department)
+Dept	HOD
+CSE	Kumar
+ECE	Ramesh
+Foreign Key Example
+
+Student.Dept → references Department.Dept
+
+8. Relational Algebra (Basic Operations)
+Selection (σ): Select rows
+Projection (π): Select columns
+Join (⨝): Combine tables
+Union (∪): Combine results
+Intersection (∩): Common rows
+Difference (−): Remove rows
+9. Advantages
+Simple and easy to understand
+Reduces redundancy
+Provides data independence
+Strong mathematical foundation
+10. Disadvantages
+Complex queries for large databases
+Requires joins for multiple tables
+Not suitable for complex data types
+11. Conclusion
+
+The Relational Model provides a simple and powerful way to organize data using tables and is the foundation for modern DBMS systems.
