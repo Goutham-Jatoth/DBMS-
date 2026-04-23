@@ -1,0 +1,180 @@
+6. 
+A. Querying (using ANY, ALL, UNION, INTERSECT, JOIN, Constraints etc.) 
+
+
+
+
+A. Querying using ANY, ALL, UNION, INTERSECT, JOIN, Constraints
+1. Aim
+
+To perform SQL queries using ANY, ALL, UNION, INTERSECT, JOIN operations and apply constraints.
+
+2. Theory
+
+SQL provides advanced querying features:
+
+ANY / ALL → Compare values from subqueries
+UNION / INTERSECT → Combine query results
+JOIN → Combine tables
+Constraints → Maintain data integrity
+3. Program / Procedure
+Step 1: Create Tables with Constraints
+CREATE TABLE Student (
+    RollNo INT PRIMARY KEY,
+    Name VARCHAR(30),
+    Dept VARCHAR(10)
+);
+
+CREATE TABLE Marks (
+    RollNo INT,
+    Subject VARCHAR(20),
+    Marks INT CHECK (Marks BETWEEN 0 AND 100),
+    FOREIGN KEY (RollNo) REFERENCES Student(RollNo)
+);
+Step 2: Insert Data
+INSERT INTO Student VALUES (101, 'Ravi', 'CSE');
+INSERT INTO Student VALUES (102, 'Anu', 'ECE');
+INSERT INTO Student VALUES (103, 'Kiran', 'EEE');
+
+INSERT INTO Marks VALUES (101, 'DBMS', 85);
+INSERT INTO Marks VALUES (101, 'OS', 78);
+INSERT INTO Marks VALUES (102, 'DBMS', 90);
+INSERT INTO Marks VALUES (103, 'OS', 60);
+4. Queries
+a) JOIN (Inner Join)
+SELECT S.Name, M.Subject, M.Marks
+FROM Student S
+INNER JOIN Marks M
+ON S.RollNo = M.RollNo;
+b) ANY Operator
+SELECT Name
+FROM Student
+WHERE RollNo = ANY (
+    SELECT RollNo FROM Marks WHERE Marks > 80
+);
+c) ALL Operator
+SELECT Name
+FROM Student
+WHERE RollNo = ALL (
+    SELECT RollNo FROM Marks WHERE Marks >= 60
+);
+d) UNION
+SELECT RollNo FROM Student
+UNION
+SELECT RollNo FROM Marks;
+e) INTERSECT
+SELECT RollNo FROM Student
+INTERSECT
+SELECT RollNo FROM Marks;
+f) Constraint Check (Example)
+INSERT INTO Marks VALUES (104, 'DBMS', 120);  -- Will fail (CHECK constraint)
+5. Output (What to Write)
+Tables created with constraints
+Data inserted successfully
+JOIN displays combined data
+ANY and ALL return filtered results
+UNION and INTERSECT show combined and common data
+Constraint prevents invalid data
+
+
+
+
+
+
+
+
+
+
+
+
+B. Nested, Correlated subqueries
+
+
+
+
+B. Nested & Correlated Subqueries
+1. Aim
+
+To write and execute SQL queries using nested subqueries and correlated subqueries.
+
+2. Theory
+
+A subquery is a query written inside another query.
+
+Nested Subquery → Executes once and passes result to outer query
+Correlated Subquery → Executes repeatedly for each row of outer query
+3. Program / Procedure
+Step 1: Create Tables
+CREATE TABLE Student (
+    RollNo INT PRIMARY KEY,
+    Name VARCHAR(30),
+    Dept VARCHAR(10)
+);
+
+CREATE TABLE Marks (
+    RollNo INT,
+    Subject VARCHAR(20),
+    Marks INT,
+    FOREIGN KEY (RollNo) REFERENCES Student(RollNo)
+);
+Step 2: Insert Data
+INSERT INTO Student VALUES (101, 'Ravi', 'CSE');
+INSERT INTO Student VALUES (102, 'Anu', 'ECE');
+INSERT INTO Student VALUES (103, 'Kiran', 'EEE');
+
+INSERT INTO Marks VALUES (101, 'DBMS', 85);
+INSERT INTO Marks VALUES (101, 'OS', 78);
+INSERT INTO Marks VALUES (102, 'DBMS', 92);
+INSERT INTO Marks VALUES (103, 'OS', 60);
+4. Queries
+a) Nested Subquery
+
+Find students who scored more than 80
+
+SELECT Name
+FROM Student
+WHERE RollNo IN (
+    SELECT RollNo FROM Marks WHERE Marks > 80
+);
+b) Nested Subquery with Aggregate
+
+Find students having marks greater than average
+
+SELECT Name
+FROM Student
+WHERE RollNo IN (
+    SELECT RollNo FROM Marks
+    WHERE Marks > (SELECT AVG(Marks) FROM Marks)
+);
+c) Correlated Subquery
+
+Find students who scored more than 90 in any subject
+
+SELECT Name
+FROM Student S
+WHERE EXISTS (
+    SELECT *
+    FROM Marks M
+    WHERE S.RollNo = M.RollNo AND M.Marks > 90
+);
+d) Correlated Subquery with Comparison
+
+Find students whose marks are above their own average
+
+SELECT Name
+FROM Student S
+WHERE EXISTS (
+    SELECT *
+    FROM Marks M
+    WHERE M.RollNo = S.RollNo
+    AND M.Marks > (
+        SELECT AVG(Marks)
+        FROM Marks
+        WHERE RollNo = S.RollNo
+    )
+);
+5. Output (What to Write)
+Tables created and data inserted
+Nested subqueries executed successfully
+Correlated subqueries executed for each row
+Correct filtered results obtained
