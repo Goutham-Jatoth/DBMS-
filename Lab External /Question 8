@@ -1,0 +1,69 @@
+8. Triggers (Creation of insert trigger, delete trigger, update trigger) 
+
+
+
+Triggers (INSERT, DELETE, UPDATE)
+1. Aim
+
+To create and execute INSERT, DELETE, and UPDATE triggers to automatically log changes in a table.
+
+2. Theory
+
+A trigger is a database object that automatically executes when an event (INSERT, UPDATE, DELETE) occurs on a table.
+
+INSERT Trigger → Executes when a row is inserted
+DELETE Trigger → Executes when a row is deleted
+UPDATE Trigger → Executes when a row is updated
+3. Program / Procedure
+Step 1: Create Main Table
+CREATE TABLE Student (
+    RollNo INT PRIMARY KEY,
+    Name VARCHAR(30),
+    Dept VARCHAR(10)
+);
+Step 2: Create Log Table
+CREATE TABLE Student_Log (
+    RollNo INT,
+    Action VARCHAR(10),
+    Action_Date DATE
+);
+Step 3: Create INSERT Trigger
+CREATE OR REPLACE TRIGGER trg_insert
+AFTER INSERT ON Student
+FOR EACH ROW
+BEGIN
+    INSERT INTO Student_Log
+    VALUES (:NEW.RollNo, 'INSERT', SYSDATE);
+END;
+Step 4: Create DELETE Trigger
+CREATE OR REPLACE TRIGGER trg_delete
+AFTER DELETE ON Student
+FOR EACH ROW
+BEGIN
+    INSERT INTO Student_Log
+    VALUES (:OLD.RollNo, 'DELETE', SYSDATE);
+END;
+Step 5: Create UPDATE Trigger
+CREATE OR REPLACE TRIGGER trg_update
+AFTER UPDATE ON Student
+FOR EACH ROW
+BEGIN
+    INSERT INTO Student_Log
+    VALUES (:OLD.RollNo, 'UPDATE', SYSDATE);
+END;
+4. Testing the Triggers
+Insert Data
+INSERT INTO Student VALUES (101, 'Ravi', 'CSE');
+Update Data
+UPDATE Student SET Dept = 'ECE' WHERE RollNo = 101;
+Delete Data
+DELETE FROM Student WHERE RollNo = 101;
+Check Log Table
+SELECT * FROM Student_Log;
+5. Output (What to Write)
+Triggers created successfully
+Insert, update, delete operations performed
+Log table records all actions automatically
+6. Result
+
+Triggers are successfully created and executed to track INSERT, UPDATE, and DELETE operations.
