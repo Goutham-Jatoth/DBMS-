@@ -1,0 +1,188 @@
+Queries using Aggregate functions, GROUP BY, HAVING and Creation and dropping of Views.
+
+
+
+
+
+
+
+Program 1: Basic Aggregate Functions
+Step 1: Create Table
+CREATE TABLE Student (
+    RollNo INT PRIMARY KEY,
+    Name VARCHAR(30),
+    Dept VARCHAR(10),
+    Marks INT
+);
+Step 2: Insert Data
+INSERT INTO Student VALUES (101, 'Ravi', 'CSE', 85);
+INSERT INTO Student VALUES (102, 'Anu', 'ECE', 78);
+INSERT INTO Student VALUES (103, 'Kiran', 'CSE', 92);
+INSERT INTO Student VALUES (104, 'Sita', 'ECE', 88);
+INSERT INTO Student VALUES (105, 'Ram', 'EEE', 70);
+Step 3: Aggregate Queries
+SELECT COUNT(*) FROM Student;
+SELECT AVG(Marks) FROM Student;
+SELECT MAX(Marks) FROM Student;
+SELECT MIN(Marks) FROM Student;
+SELECT SUM(Marks) FROM Student;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Program 2: GROUP BY
+
+👉 Department-wise total marks
+
+SELECT Dept, SUM(Marks) AS TotalMarks
+FROM Student
+GROUP BY Dept;
+
+
+
+
+
+
+
+
+
+Program 3: GROUP BY with COUNT
+
+👉 Number of students in each department
+
+SELECT Dept, COUNT(*) AS TotalStudents
+FROM Student
+GROUP BY Dept;
+
+
+
+
+
+
+
+
+
+Program 4: HAVING Clause
+
+👉 Departments with average marks > 80
+
+SELECT Dept, AVG(Marks) AS AvgMarks
+FROM Student
+GROUP BY Dept
+HAVING AVG(Marks) > 80;
+
+
+
+
+
+
+
+
+
+Program 5: GROUP BY + HAVING + COUNT
+
+👉 Departments with more than 1 student
+
+SELECT Dept, COUNT(*) AS Total
+FROM Student
+GROUP BY Dept
+HAVING COUNT(*) > 1;
+
+
+
+
+
+
+
+
+Program 6: CREATE VIEW
+
+👉 View for students with marks > 80
+
+CREATE VIEW Top_Students AS
+SELECT RollNo, Name, Marks
+FROM Student
+WHERE Marks > 80;
+
+
+
+
+
+
+
+
+Program 7: Display View
+SELECT * FROM Top_Students;
+
+
+
+
+
+
+
+
+Program 8: CREATE VIEW with GROUP BY
+
+👉 Department-wise average marks view
+
+CREATE VIEW Dept_Avg AS
+SELECT Dept, AVG(Marks) AS AvgMarks
+FROM Student
+GROUP BY Dept;
+
+
+
+
+
+
+
+
+
+
+Program 9: DROP VIEW
+DROP VIEW Top_Students;
+DROP VIEW Dept_Avg;
+
+
+
+
+
+
+
+
+
+
+
+
+
+Program 10: Combined Query
+
+👉 Students scoring above department average
+
+SELECT Name, Marks
+FROM Student S
+WHERE Marks > (
+    SELECT AVG(Marks)
+    FROM Student
+    WHERE Dept = S.Dept
+);
+
+
+
+
+
+
+
+
+
