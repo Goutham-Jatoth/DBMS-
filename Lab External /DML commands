@@ -1,0 +1,141 @@
+Practicing DML commands 
+
+
+Program 1: Student Table DML Practice
+Step 1: Create Table
+CREATE TABLE Student (
+    RollNo INT PRIMARY KEY,
+    Name VARCHAR(30),
+    Dept VARCHAR(10),
+    Age INT
+);
+Step 2: Insert Data
+INSERT INTO Student VALUES (101, 'Ravi', 'CSE', 20);
+INSERT INTO Student VALUES (102, 'Anu', 'ECE', 19);
+INSERT INTO Student VALUES (103, 'Kiran', 'EEE', 21);
+INSERT INTO Student VALUES (104, 'Sita', 'CSE', 22);
+Step 3: Display Data
+SELECT * FROM Student;
+Step 4: Conditional SELECT
+SELECT * FROM Student WHERE Dept = 'CSE';
+Step 5: Update Data
+UPDATE Student SET Age = 23 WHERE RollNo = 101;
+Step 6: Delete Record
+DELETE FROM Student WHERE RollNo = 102;
+Step 7: Final Data
+SELECT * FROM Student;
+
+
+
+
+
+
+
+
+Program 2: Employee Table DML Practice
+Step 1: Create Table
+CREATE TABLE Employee (
+    EmpID INT PRIMARY KEY,
+    Name VARCHAR(30),
+    Salary INT,
+    Dept VARCHAR(10)
+);
+Step 2: Insert Data
+INSERT INTO Employee VALUES (1, 'Ramesh', 30000, 'HR');
+INSERT INTO Employee VALUES (2, 'Sita', 25000, 'IT');
+INSERT INTO Employee VALUES (3, 'Raj', 40000, 'HR');
+Step 3: Select with Condition
+SELECT * FROM Employee WHERE Salary > 30000;
+Step 4: Update Multiple Rows
+UPDATE Employee SET Salary = Salary + 5000 WHERE Dept = 'HR';
+Step 5: Delete Records
+DELETE FROM Employee WHERE Salary < 30000;
+Step 6: Final Output
+SELECT * FROM Employee;
+
+
+
+
+
+
+
+
+
+
+
+
+
+Program 3: Product Table with Conditions
+Step 1: Create Table
+CREATE TABLE Product (
+    ProductID INT PRIMARY KEY,
+    Name VARCHAR(30),
+    Price INT
+);
+Step 2: Insert Data
+INSERT INTO Product VALUES (1, 'Pen', 10);
+INSERT INTO Product VALUES (2, 'Book', 50);
+INSERT INTO Product VALUES (3, 'Bag', 500);
+Step 3: SELECT with ORDER BY
+SELECT * FROM Product ORDER BY Price DESC;
+Step 4: Update Condition
+UPDATE Product SET Price = Price + 10 WHERE Price < 100;
+Step 5: Delete Condition
+DELETE FROM Product WHERE Price > 400;
+
+
+
+
+
+
+
+
+
+
+
+Program 4: Marks Table with LIKE & BETWEEN
+Step 1: Create Table
+CREATE TABLE Marks (
+    RollNo INT,
+    Name VARCHAR(30),
+    Marks INT
+);
+Step 2: Insert Data
+INSERT INTO Marks VALUES (101, 'Ravi', 85);
+INSERT INTO Marks VALUES (102, 'Anu', 75);
+INSERT INTO Marks VALUES (103, 'Kiran', 90);
+Step 3: LIKE Operator
+SELECT * FROM Marks WHERE Name LIKE 'R%';
+Step 4: BETWEEN Operator
+SELECT * FROM Marks WHERE Marks BETWEEN 80 AND 95;
+Step 5: Update
+UPDATE Marks SET Marks = 95 WHERE RollNo = 103;
+
+
+
+
+
+
+
+
+
+
+Program 5: Department Table with Multiple Conditions
+Step 1: Create Table
+CREATE TABLE Department (
+    DeptID INT,
+    DeptName VARCHAR(30),
+    Location VARCHAR(30)
+);
+Step 2: Insert Data
+INSERT INTO Department VALUES (10, 'CSE', 'Block A');
+INSERT INTO Department VALUES (20, 'ECE', 'Block B');
+INSERT INTO Department VALUES (30, 'EEE', 'Block C');
+Step 3: AND Condition
+SELECT * FROM Department 
+WHERE DeptID > 10 AND Location = 'Block B';
+Step 4: OR Condition
+SELECT * FROM Department 
+WHERE DeptName = 'CSE' OR DeptName = 'EEE';
+Step 5: Delete
+DELETE FROM Department WHERE DeptID = 30;
