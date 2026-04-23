@@ -1,0 +1,167 @@
+3. Normalization 
+
+2. Problem Statement
+
+Consider an unnormalized table storing student and department details.
+
+3. Unnormalized Table
+CREATE TABLE Student_Un (
+    RollNo INT,
+    Name VARCHAR(30),
+    Dept VARCHAR(10),
+    DeptHOD VARCHAR(30)
+);
+4. Insert Sample Data
+INSERT INTO Student_Un VALUES (101, 'Ravi', 'CSE', 'Kumar');
+INSERT INTO Student_Un VALUES (102, 'Anu', 'ECE', 'Ramesh');
+INSERT INTO Student_Un VALUES (103, 'Kiran', 'CSE', 'Kumar');
+5. Problem (Before Normalization)
+Redundancy: DeptHOD repeated multiple times
+Update anomaly: If HOD changes, update multiple rows
+Deletion anomaly: Deleting last student removes dept info
+6. Normalization to 3NF
+Step 1: Create Student Table
+CREATE TABLE Student (
+    RollNo INT PRIMARY KEY,
+    Name VARCHAR(30),
+    Dept VARCHAR(10)
+);
+Step 2: Create Department Table
+CREATE TABLE Department (
+    Dept VARCHAR(10) PRIMARY KEY,
+    DeptHOD VARCHAR(30)
+);
+7. Insert Data into Normalized Tables
+INSERT INTO Student VALUES (101, 'Ravi', 'CSE');
+INSERT INTO Student VALUES (102, 'Anu', 'ECE');
+INSERT INTO Student VALUES (103, 'Kiran', 'CSE');
+
+INSERT INTO Department VALUES ('CSE', 'Kumar');
+INSERT INTO Department VALUES ('ECE', 'Ramesh');
+8. Verify Output
+Student Table
+SELECT * FROM Student;
+Department Table
+SELECT * FROM Department;
+9. Result
+
+The table is successfully normalized into 3NF, removing redundancy and avoiding anomalies.
+
+
+
+
+
+
+
+
+
+
+
+
+Normalization
+1. Introduction
+
+Normalization is an important concept in DBMS used to organize data properly in a database.
+It helps in reducing data redundancy and avoiding anomalies.
+
+2. Definition
+
+Normalization is the process of dividing a large table into smaller tables and defining relationships between them to eliminate redundancy and ensure data integrity.
+
+3. Need for Normalization
+
+Normalization is required to:
+
+Remove duplicate data
+Avoid data inconsistency
+Improve database efficiency
+Maintain data integrity
+4. Types of Anomalies
+a) Insertion Anomaly
+
+Cannot insert data without adding unnecessary information.
+
+👉 Example: Cannot add a new department without a student.
+
+b) Deletion Anomaly
+
+Deleting one record may delete other important data.
+
+👉 Example: Deleting last student removes department info.
+
+c) Update Anomaly
+
+Same data must be updated in multiple places.
+
+👉 Example: Changing department name in many rows.
+
+5. Functional Dependency
+
+A functional dependency is a relationship between attributes.
+
+👉 If A → B, then B depends on A
+Example: RollNo → Name
+
+6. Normal Forms
+a) First Normal Form (1NF)
+
+A table is in 1NF if:
+
+All values are atomic (no repeating groups)
+
+👉 Example (Not in 1NF):
+
+RollNo	Phone
+101	123,456
+
+👉 Convert to 1NF:
+
+RollNo	Phone
+101	123
+101	456
+b) Second Normal Form (2NF)
+
+A table is in 2NF if:
+
+It is in 1NF
+No partial dependency
+
+👉 Example:
+(StudentID, CourseID → Grade)
+StudentName depends only on StudentID → remove it
+
+c) Third Normal Form (3NF)
+
+A table is in 3NF if:
+
+It is in 2NF
+No transitive dependency
+
+👉 Example:
+StudentID → Dept → DeptHOD
+
+d) Boyce-Codd Normal Form (BCNF)
+
+A table is in BCNF if:
+
+Every determinant is a super key
+7. Example of Normalization
+Unnormalized Table
+RollNo	Name	Dept	DeptHOD
+After Normalization (3NF)
+Student(RollNo, Name, Dept)
+
+Department(Dept, DeptHOD)
+DeptHOD depends on Dept → separate table
+8. Advantages
+Reduces redundancy
+Eliminates anomalies
+Improves consistency
+Saves storage
+9. Disadvantages
+More tables created
+Complex queries (joins required)
+Slight performance overhead
+10. Conclusion
+
+Normalization helps in designing a well-structured database by removing redundancy and ensuring data consistency, usually up to 3NF or BCNF.
