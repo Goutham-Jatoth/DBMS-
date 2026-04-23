@@ -1,0 +1,215 @@
+ Normalization  Practice 
+
+
+Program 1: 1NF Conversion (Removing Repeating Groups)
+Unnormalized Table
+CREATE TABLE Student_Un (
+    RollNo INT,
+    Name VARCHAR(30),
+    Phone VARCHAR(50)
+);
+Insert Data
+INSERT INTO Student_Un VALUES (101, 'Ravi', '123,456');
+INSERT INTO Student_Un VALUES (102, 'Anu', '789');
+❌ Problem
+Multiple phone numbers in one column (not atomic)
+✅ Convert to 1NF
+CREATE TABLE Student_1NF (
+    RollNo INT,
+    Name VARCHAR(30),
+    Phone VARCHAR(15)
+);
+
+INSERT INTO Student_1NF VALUES (101, 'Ravi', '123');
+INSERT INTO Student_1NF VALUES (101, 'Ravi', '456');
+INSERT INTO Student_1NF VALUES (102, 'Anu', '789');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Program 2: 2NF Conversion (Removing Partial Dependency)
+Table
+CREATE TABLE Student_Course (
+    RollNo INT,
+    CourseID INT,
+    StudentName VARCHAR(30),
+    CourseName VARCHAR(30)
+);
+❌ Problem
+StudentName depends only on RollNo
+CourseName depends only on CourseID
+✅ Convert to 2NF
+CREATE TABLE Student (
+    RollNo INT PRIMARY KEY,
+    StudentName VARCHAR(30)
+);
+
+CREATE TABLE Course (
+    CourseID INT PRIMARY KEY,
+    CourseName VARCHAR(30)
+);
+
+CREATE TABLE Enroll (
+    RollNo INT,
+    CourseID INT,
+    FOREIGN KEY (RollNo) REFERENCES Student(RollNo),
+    FOREIGN KEY (CourseID) REFERENCES Course(CourseID)
+);
+
+
+
+
+
+
+
+
+
+
+
+3NF Conversion (Removing Transitive Dependency)
+Table
+CREATE TABLE Employee_Un (
+    EmpID INT,
+    EmpName VARCHAR(30),
+    DeptID INT,
+    DeptName VARCHAR(30)
+);
+❌ Problem
+DeptName depends on DeptID (not directly on EmpID)
+✅ Convert to 3NF
+CREATE TABLE Employee (
+    EmpID INT PRIMARY KEY,
+    EmpName VARCHAR(30),
+    DeptID INT
+);
+
+CREATE TABLE Department (
+    DeptID INT PRIMARY KEY,
+    DeptName VARCHAR(30)
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Library Database Normalization
+Unnormalized Table
+CREATE TABLE Library_Un (
+    BookID INT,
+    BookName VARCHAR(30),
+    AuthorName VARCHAR(30),
+    Publisher VARCHAR(30)
+);
+❌ Problem
+Repeated author and publisher data
+✅ Convert to 3NF
+CREATE TABLE Book (
+    BookID INT PRIMARY KEY,
+    BookName VARCHAR(30),
+    AuthorID INT,
+    PublisherID INT
+);
+
+CREATE TABLE Author (
+    AuthorID INT PRIMARY KEY,
+    AuthorName VARCHAR(30)
+);
+
+CREATE TABLE Publisher (
+    PublisherID INT PRIMARY KEY,
+    Publisher VARCHAR(30)
+);
+
+
+
+
+
+
+
+
+
+
+Order System Normalization
+Unnormalized Table
+CREATE TABLE Orders_Un (
+    OrderID INT,
+    CustomerName VARCHAR(30),
+    ProductName VARCHAR(30),
+    Price INT
+);
+❌ Problem
+Customer and product repeated
+✅ Convert to 3NF
+CREATE TABLE Customer (
+    CustomerID INT PRIMARY KEY,
+    CustomerName VARCHAR(30)
+);
+
+CREATE TABLE Product (
+    ProductID INT PRIMARY KEY,
+    ProductName VARCHAR(30),
+    Price INT
+);
+
+CREATE TABLE Orders (
+    OrderID INT,
+    CustomerID INT,
+    ProductID INT
+);
+
+
+
+
+
+
+
+
+
+
+Program 6: Student–Department Advanced
+Unnormalized
+CREATE TABLE Student_Un (
+    RollNo INT,
+    Name VARCHAR(30),
+    Dept VARCHAR(10),
+    DeptHOD VARCHAR(30),
+    DeptPhone VARCHAR(15)
+);
+❌ Problem
+DeptHOD, DeptPhone depend on Dept
+✅ 3NF
+CREATE TABLE Student (
+    RollNo INT PRIMARY KEY,
+    Name VARCHAR(30),
+    Dept VARCHAR(10)
+);
+
+CREATE TABLE Department (
+    Dept VARCHAR(10) PRIMARY KEY,
+    DeptHOD VARCHAR(30),
+    DeptPhone VARCHAR(15)
+);
