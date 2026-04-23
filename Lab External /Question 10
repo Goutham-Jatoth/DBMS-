@@ -1,0 +1,55 @@
+10. Usage of Cursors
+
+
+Usage of Cursors
+1. Aim
+
+To create and use a cursor to retrieve and display records row by row from a table.
+
+2. Theory
+
+A cursor is a pointer used in PL/SQL to process multiple rows one by one from a query result.
+
+Steps to use a cursor:
+
+Declare cursor
+Open cursor
+Fetch records
+Close cursor
+3. Program / Procedure
+Step 1: Create Table
+CREATE TABLE Student (
+    RollNo INT PRIMARY KEY,
+    Name VARCHAR(30),
+    Dept VARCHAR(10)
+);
+Step 2: Insert Data
+INSERT INTO Student VALUES (101, 'Ravi', 'CSE');
+INSERT INTO Student VALUES (102, 'Anu', 'ECE');
+INSERT INTO Student VALUES (103, 'Kiran', 'EEE');
+4. Cursor Program
+SET SERVEROUTPUT ON;
+
+DECLARE
+    CURSOR c1 IS SELECT Name, Dept FROM Student;
+    v_name Student.Name%TYPE;
+    v_dept Student.Dept%TYPE;
+BEGIN
+    OPEN c1;
+
+    LOOP
+        FETCH c1 INTO v_name, v_dept;
+        EXIT WHEN c1%NOTFOUND;
+
+        DBMS_OUTPUT.PUT_LINE('Name: ' || v_name || ' Dept: ' || v_dept);
+    END LOOP;
+
+    CLOSE c1;
+END;
+5. Output (What to Write)
+Name: Ravi Dept: CSE
+Name: Anu Dept: ECE
+Name: Kiran Dept: EEE
+6. Result
+
+Cursor is successfully used to fetch and display records row by row.
