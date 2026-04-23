@@ -1,0 +1,51 @@
+4. Practicing DDL commands 
+
+
+Practicing DDL Commands with Data
+1. Aim
+
+To perform DDL operations and observe their effect on table structure and data.
+
+2. Program / Procedure
+Step 1: Create Table
+CREATE TABLE Student (
+    RollNo INT PRIMARY KEY,
+    Name VARCHAR(30),
+    Age INT
+);
+Step 2: Insert Sample Data
+INSERT INTO Student VALUES (101, 'Ravi', 20);
+INSERT INTO Student VALUES (102, 'Anu', 19);
+INSERT INTO Student VALUES (103, 'Kiran', 21);
+Step 3: Display Data
+SELECT * FROM Student;
+Step 4: Add New Column
+ALTER TABLE Student ADD Dept VARCHAR(10);
+Step 5: Update New Column Values
+UPDATE Student SET Dept = 'CSE' WHERE RollNo = 101;
+UPDATE Student SET Dept = 'ECE' WHERE RollNo = 102;
+UPDATE Student SET Dept = 'EEE' WHERE RollNo = 103;
+Step 6: Display Updated Table
+SELECT * FROM Student;
+Step 7: Modify Column
+ALTER TABLE Student MODIFY Name VARCHAR(50);
+Step 8: Drop Column
+ALTER TABLE Student DROP Age;
+Step 9: Display Final Structure
+DESC Student;
+Step 10: Rename Table
+RENAME Student TO Student_Details;
+Step 11: Display Data
+SELECT * FROM Student_Details;
+Step 12: Truncate Table
+TRUNCATE TABLE Student_Details;
+Step 13: Drop Table
+DROP TABLE Student_Details;
+3. Output (What You Say in Exam)
+Data inserted successfully
+Column added and updated
+Column modified and dropped
+Table renamed, truncated, and deleted
+4. Result
+
+DDL commands are successfully executed along with data operations to observe structural changes.
