@@ -1,0 +1,226 @@
+Nested, Correlated subqueries 
+
+
+
+Program 1: Basic Nested Subquery
+Step 1: Create Tables
+CREATE TABLE Student (
+    RollNo INT PRIMARY KEY,
+    Name VARCHAR(30),
+    Dept VARCHAR(10)
+);
+
+CREATE TABLE Marks (
+    RollNo INT,
+    Subject VARCHAR(20),
+    Marks INT
+);
+Step 2: Insert Data
+INSERT INTO Student VALUES (101, 'Ravi', 'CSE');
+INSERT INTO Student VALUES (102, 'Anu', 'ECE');
+INSERT INTO Student VALUES (103, 'Kiran', 'EEE');
+
+INSERT INTO Marks VALUES (101, 'DBMS', 85);
+INSERT INTO Marks VALUES (102, 'DBMS', 70);
+INSERT INTO Marks VALUES (103, 'DBMS', 90);
+Step 3: Nested Subquery
+
+👉 Students scoring more than 80
+
+SELECT Name
+FROM Student
+WHERE RollNo IN (
+    SELECT RollNo FROM Marks WHERE Marks > 80
+);
+
+
+
+
+
+
+
+
+
+
+
+
+Program 2: Nested Subquery with AVG()
+
+👉 Students scoring above average
+
+SELECT Name
+FROM Student
+WHERE RollNo IN (
+    SELECT RollNo 
+    FROM Marks
+    WHERE Marks > (SELECT AVG(Marks) FROM Marks)
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+Program 3: Nested Subquery with MAX()
+
+👉 Student with highest marks
+
+SELECT Name
+FROM Student
+WHERE RollNo IN (
+    SELECT RollNo 
+    FROM Marks
+    WHERE Marks = (SELECT MAX(Marks) FROM Marks)
+
+
+
+
+
+
+
+Program 4: Correlated Subquery using EXISTS
+
+👉 Students scoring more than 80
+
+SELECT Name
+FROM Student S
+WHERE EXISTS (
+    SELECT *
+    FROM Marks M
+    WHERE S.RollNo = M.RollNo AND M.Marks > 80
+);
+
+
+
+
+
+
+
+
+
+Program 5: Correlated Subquery with AVG
+
+👉 Students scoring above their own average
+
+SELECT Name
+FROM Student S
+WHERE EXISTS (
+    SELECT *
+    FROM Marks M
+    WHERE M.RollNo = S.RollNo
+    AND M.Marks > (
+        SELECT AVG(Marks)
+        FROM Marks
+        WHERE RollNo = S.RollNo
+    )
+);
+
+
+
+
+
+
+
+
+
+
+Program 6: Correlated Subquery with COUNT
+
+👉 Students having more than 1 subject
+
+SELECT Name
+FROM Student S
+WHERE (
+    SELECT COUNT(*)
+    FROM Marks M
+    WHERE M.RollNo = S.RollNo
+) > 1;
+
+
+
+
+
+
+
+
+
+
+Program 7: Nested Subquery with IN
+
+👉 Students in CSE department with marks > 75
+
+SELECT Name
+FROM Student
+WHERE Dept = 'CSE'
+AND RollNo IN (
+    SELECT RollNo FROM Marks WHERE Marks > 75
+);
+
+
+
+
+
+
+
+
+
+Program 8: Correlated Subquery with NOT EXISTS
+
+👉 Students with no marks
+
+SELECT Name
+FROM Student S
+WHERE NOT EXISTS (
+    SELECT *
+    FROM Marks M
+    WHERE S.RollNo = M.RollNo
+);
+
+
+
+
+
+
+
+
+
+
+
+Program 9: Nested Subquery with MIN()
+
+👉 Students with lowest marks
+
+SELECT Name
+FROM Student
+WHERE RollNo IN (
+    SELECT RollNo
+    FROM Marks
+    WHERE Marks = (SELECT MIN(Marks) FROM Marks)
+);
+
+
+
+
+
+
+
+
+
+
+Program 10: Mixed Query (JOIN + Subquery)
+SELECT Name
+FROM Student
+WHERE RollNo IN (
+    SELECT RollNo
+    FROM Marks
+    WHERE Marks > (
+        SELECT AVG(Marks) FROM Marks
+    )
+);
