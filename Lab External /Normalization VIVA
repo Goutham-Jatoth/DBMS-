@@ -1,0 +1,145 @@
+NORMALIZATION VIVA Q&A (1-LINE)
+🔹 Basic Concepts
+What is normalization? → Process of organizing data to reduce redundancy.
+Why normalization is used? → To remove redundancy and avoid anomalies.
+What is redundancy? → Repetition of data.
+What is anomaly? → Problem during insert, update, delete operations.
+Types of anomalies? → Insertion, update, deletion anomalies.
+
+🔹 Functional Dependency
+What is functional dependency? → Relationship between attributes.
+Example of FD? → RollNo → Name.
+What is determinant? → Attribute that determines another.
+What is trivial dependency? → A → A (same attribute).
+What is non-trivial dependency? → A → B (different attributes).
+
+🔹 1NF (First Normal Form)
+What is 1NF? → Table with atomic (single) values.
+Main rule of 1NF? → No repeating groups or multivalued attributes.
+Example issue in 1NF? → Multiple phone numbers in one column.
+Solution for 1NF? → Split into multiple rows.
+🔹 2NF (Second Normal Form)
+What is 2NF? → 1NF + no partial dependency.
+What is partial dependency? → Depends on part of composite key.
+When does 2NF apply? → When table has composite key.
+Solution for 2NF? → Split into separate tables.
+
+🔹 3NF (Third Normal Form)
+What is 3NF? → 2NF + no transitive dependency.
+What is transitive dependency? → A → B and B → C.
+Example of 3NF issue? → Dept → HOD.
+Solution for 3NF? → Create separate table for dependent attributes.
+
+🔹 BCNF
+What is BCNF? → Every determinant must be a candidate key.
+Is BCNF stronger than 3NF? → Yes.
+Why BCNF used? → To remove remaining anomalies.
+
+🔹 Keys & Dependency
+What is candidate key? → Minimal unique attribute set.
+What is primary key? → Selected candidate key.
+What is composite key? → Key with multiple attributes.
+What is super key? → Attribute set that uniquely identifies tuple.
+
+🔹 Practical / Lab Based
+What is unnormalized table? → Table with redundancy and repeating data.
+First step in normalization? → Convert to 1NF.
+How to identify partial dependency? → Check composite key.
+How to identify transitive dependency? → Check indirect dependency.
+Final goal of normalization? → Achieve 3NF or BCNF.
+
+🔹 Important Differences
+1NF vs 2NF? → 1NF removes repeating groups, 2NF removes partial dependency.
+2NF vs 3NF? → 2NF removes partial, 3NF removes transitive dependency.
+3NF vs BCNF? → BCNF is stricter than 3NF.
+
+🔹 Exam-Oriented
+Why normalization reduces redundancy? → By splitting tables logically.
+Does normalization improve performance? → Sometimes reduces redundancy but may increase joins.
+Is normalization always required? → Yes for good database design.
+
+
+
+
+
+
+
+
+
+
+
+ADVANCED NORMALIZATION VIVA Q&A (1-LINE)
+
+🔹 Conceptual Deep Questions
+What is the main goal of normalization? → To eliminate redundancy and ensure data consistency.
+What is denormalization? → Process of adding redundancy for performance.
+When is denormalization used? → To improve query performance.
+Is normalization always beneficial? → Not always, may increase joins.
+What is data integrity? → Accuracy and consistency of data.
+
+🔹 Functional Dependency (Advanced)
+What is full functional dependency? → Depends on entire key.
+Difference between full and partial dependency? → Full uses entire key, partial uses part.
+What is transitive dependency example? → A → B and B → C.
+What is closure of attributes? → Set of all attributes determined by a key.
+Why functional dependency is important? → Helps in normalization process.
+
+🔹 1NF Advanced
+Can NULL values exist in 1NF? → Yes.
+Can duplicate rows exist in 1NF? → Yes (unless key defined).
+What is atomic value? → Indivisible value.
+Does 1NF remove redundancy completely? → No.
+
+🔹 2NF Advanced
+Can 2NF exist without composite key? → Yes, automatically satisfied.
+What happens if partial dependency exists? → Table is not in 2NF.
+Does 2NF remove all redundancy? → No.
+
+🔹 3NF Advanced
+Does 3NF remove all anomalies? → Most but not all.
+Can 3NF have redundancy? → Yes, in some cases.
+Condition for 3NF? → No transitive dependency.
+What is prime attribute? → Part of candidate key.
+What is non-prime attribute? → Not part of candidate key.
+
+🔹 BCNF Advanced
+Condition for BCNF? → Every determinant must be candidate key.
+Why BCNF is needed after 3NF? → To remove hidden anomalies.
+Does BCNF eliminate all redundancy? → Mostly yes.
+
+🔹 Anomalies (Important)
+What is insertion anomaly? → Cannot insert data independently.
+What is update anomaly? → Same data updated in multiple places.
+What is deletion anomaly? → Deleting data removes useful info.
+Example of update anomaly? → Changing HOD in multiple rows.
+
+🔹 Decomposition
+What is decomposition? → Splitting table into smaller tables.
+What is lossless decomposition? → No data loss after split.
+What is lossy decomposition? → Data loss occurs.
+What is dependency preservation? → Dependencies maintained after split.
+Why decomposition is needed? → To achieve higher normal forms.
+
+🔹 Keys & Normalization
+Role of primary key in normalization? → Identifies records uniquely.
+Why composite key causes problems? → Leads to partial dependency.
+Candidate key vs super key? → Candidate is minimal, super may have extra.
+
+🔹 Practical Lab-Based
+How to check 1NF in table? → Check atomic values.
+How to check 2NF? → Check partial dependency.
+How to check 3NF? → Check transitive dependency.
+What is first step in solving normalization problem? → Identify keys.
+What is final step? → Split tables accordingly.
+
+🔹 Comparison Questions
+1NF vs Unnormalized? → 1NF has atomic values.
+2NF vs 1NF? → 2NF removes partial dependency.
+3NF vs 2NF? → 3NF removes transitive dependency.
+BCNF vs 3NF? → BCNF is stricter.
+
+🔹 Tricky Questions (Exam Favorite)
+Can a table be in 2NF but not in 3NF? → Yes.
+Can a table be in 3NF but not in BCNF? → Yes.
+Can a table be in 1NF but not in 2NF? → Yes.
+Is normalization mandatory? → Yes for proper design.
