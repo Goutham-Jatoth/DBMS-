@@ -1,0 +1,211 @@
+Triggers (Creation of insert trigger, delete trigger, update trigger) 
+
+
+Program 1: Basic Logging Trigger (All 3 Types)
+Step 1: Create Tables
+CREATE TABLE Student (
+    RollNo INT PRIMARY KEY,
+    Name VARCHAR(30),
+    Dept VARCHAR(10)
+);
+
+CREATE TABLE Student_Log (
+    RollNo INT,
+    Action VARCHAR(10),
+    Action_Time DATE
+);
+Step 2: Create Triggers
+INSERT Trigger
+CREATE OR REPLACE TRIGGER trg_insert
+AFTER INSERT ON Student
+FOR EACH ROW
+BEGIN
+    INSERT INTO Student_Log VALUES (:NEW.RollNo, 'INSERT', SYSDATE);
+END;
+UPDATE Trigger
+CREATE OR REPLACE TRIGGER trg_update
+AFTER UPDATE ON Student
+FOR EACH ROW
+BEGIN
+    INSERT INTO Student_Log VALUES (:OLD.RollNo, 'UPDATE', SYSDATE);
+END;
+DELETE Trigger
+CREATE OR REPLACE TRIGGER trg_delete
+AFTER DELETE ON Student
+FOR EACH ROW
+BEGIN
+    INSERT INTO Student_Log VALUES (:OLD.RollNo, 'DELETE', SYSDATE);
+END;
+Step 3: Test Triggers
+INSERT INTO Student VALUES (101, 'Ravi', 'CSE');
+UPDATE Student SET Dept='ECE' WHERE RollNo=101;
+DELETE FROM Student WHERE RollNo=101;
+
+SELECT * FROM Student_Log;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Program 2: BEFORE INSERT Trigger (Validation)
+Goal: Prevent marks > 100
+CREATE TABLE Marks (
+    RollNo INT,
+    Marks INT
+);
+
+CREATE OR REPLACE TRIGGER trg_check_marks
+BEFORE INSERT ON Marks
+FOR EACH ROW
+BEGIN
+    IF :NEW.Marks > 100 THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Marks cannot exceed 100');
+    END IF;
+END;
+
+
+
+
+
+
+
+
+
+
+
+Program 3: UPDATE Trigger (Track Old & New Values)
+CREATE TABLE Salary_Log (
+    EmpID INT,
+    OldSalary INT,
+    NewSalary INT
+);
+
+CREATE OR REPLACE TRIGGER trg_salary_update
+AFTER UPDATE ON Employee
+FOR EACH ROW
+BEGIN
+    INSERT INTO Salary_Log
+    VALUES (:OLD.EmpID, :OLD.Salary, :NEW.Salary);
+END;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Program 4: DELETE Trigger (Backup Data)
+CREATE TABLE Student_Backup (
+    RollNo INT,
+    Name VARCHAR(30)
+);
+
+CREATE OR REPLACE TRIGGER trg_backup_delete
+BEFORE DELETE ON Student
+FOR EACH ROW
+BEGIN
+    INSERT INTO Student_Backup VALUES (:OLD.RollNo, :OLD.Name);
+END;
+
+
+
+
+
+
+
+
+
+
+
+
+Program 5: INSERT Trigger (Auto Value)
+
+👉 Automatically insert default department
+
+CREATE OR REPLACE TRIGGER trg_default_dept
+BEFORE INSERT ON Student
+FOR EACH ROW
+BEGIN
+    IF :NEW.Dept IS NULL THEN
+        :NEW.Dept := 'CSE';
+    END IF;
+END;
+
+
+
+
+
+
+
+
+Program 6: Prevent DELETE (Restriction Trigger)
+CREATE OR REPLACE TRIGGER trg_no_delete
+BEFORE DELETE ON Student
+BEGIN
+    RAISE_APPLICATION_ERROR(-20002, 'Deletion not allowed');
+END;
+
+
+
+
+
+
+
+
+
+Program 7: UPDATE Trigger with Condition
+
+👉 Only log if salary increases
+
+CREATE OR REPLACE TRIGGER trg_salary_check
+AFTER UPDATE ON Employee
+FOR EACH ROW
+BEGIN
+    IF :NEW.Salary > :OLD.Salary THEN
+        INSERT INTO Salary_Log
+        VALUES (:OLD.EmpID, :OLD.Salary, :NEW.Salary);
+    END IF;
+END;
+
+
+
+
+
+
+
+
+
+
+Program 8: Multiple Actions in One Trigger
+CREATE OR REPLACE TRIGGER trg_multi
+AFTER INSERT OR UPDATE OR DELETE ON Student
+FOR EACH ROW
+BEGIN
+    IF INSERTING THEN
+        INSERT INTO Student_Log VALUES (:NEW.RollNo, 'INSERT', SYSDATE);
+    ELSIF UPDATING THEN
+        INSERT INTO Student_Log VALUES (:OLD.RollNo, 'UPDATE', SYSDATE);
+    ELSIF DELETING THEN
+        INSERT INTO Student_Log VALUES (:OLD.RollNo, 'DELETE', SYSDATE);
+    END IF;
+END;
+
