@@ -1,0 +1,263 @@
+MOST EXPECTED VIVA Q&A (1-LINE ANSWERS)
+🔹 ER Model & Design
+What is ER model? → It is a conceptual design showing entities and relationships.
+What is an entity? → A real-world object stored in database.
+What is an attribute? → Property of an entity.
+What is a relationship? → Association between entities.
+What is primary key? → Unique identifier of a record.
+🔹 Relational Model
+What is a relation? → Table in relational database.
+What is tuple? → Row in a table.
+What is attribute? → Column in a table.
+What is domain? → Set of valid values for a column.
+What is foreign key? → Attribute referencing primary key of another table.
+🔹 Normalization
+What is normalization? → Process of removing redundancy.
+What is 1NF? → Removes repeating groups.
+What is 2NF? → Removes partial dependency.
+What is 3NF? → Removes transitive dependency.
+What is anomaly? → Problem in data operations.
+🔹 DDL Commands
+What is DDL? → Commands to define structure.
+What is CREATE? → Creates table.
+What is ALTER? → Modifies table structure.
+What is DROP? → Deletes table permanently.
+What is TRUNCATE? → Deletes all rows but keeps structure.
+🔹 DML Commands
+What is DML? → Commands to manipulate data.
+What is INSERT? → Adds data into table.
+What is SELECT? → Retrieves data.
+What is UPDATE? → Modifies data.
+What is DELETE? → Removes data.
+🔹 SQL Querying
+What is JOIN? → Combines data from multiple tables.
+Types of JOIN? → INNER, LEFT, RIGHT, FULL.
+What is ANY? → Checks if any value matches condition.
+What is ALL? → Checks if all values satisfy condition.
+What is UNION? → Combines results without duplicates.
+What is INTERSECT? → Returns common rows.
+What are constraints? → Rules to maintain data integrity.
+🔹 Subqueries
+What is subquery? → Query inside another query.
+What is nested subquery? → Executes once.
+What is correlated subquery? → Executes for each row.
+What is EXISTS? → Checks if subquery returns rows.
+🔹 Aggregate & Views
+What is aggregate function? → Function on multiple rows.
+Examples? → COUNT, SUM, AVG, MAX, MIN.
+What is GROUP BY? → Groups rows.
+What is HAVING? → Filters grouped data.
+What is view? → Virtual table.
+Why use view? → To simplify complex queries.
+🔹 Triggers
+What is trigger? → Auto-executed SQL block.
+Types of triggers? → INSERT, UPDATE, DELETE.
+What is :NEW? → New value of row.
+What is :OLD? → Old value of row.
+BEFORE vs AFTER trigger? → BEFORE validates, AFTER logs.
+🔹 Procedures
+What is procedure? → Stored SQL block.
+Advantage? → Reusability and performance.
+How to execute? → Using EXEC command.
+What are parameters? → Inputs to procedure.
+🔹 Cursors
+What is cursor? → Row-by-row processing tool.
+Steps in cursor? → Declare, Open, Fetch, Close.
+What is %NOTFOUND? → Checks no more rows.
+Why use cursor? → To process multiple rows individually.
+
+
+
+
+
+
+
+
+
+ADVANCED VIVA Q&A (1-LINE ANSWERS)
+🔹 Keys & Constraints
+What is candidate key? → Minimal set of attributes that uniquely identify a tuple.
+What is super key? → Set of attributes that uniquely identify a tuple (may have extra attributes).
+What is alternate key? → Candidate key not chosen as primary key.
+What is composite key? → Key with more than one attribute.
+What is NOT NULL constraint? → Ensures column cannot have NULL values.
+What is UNIQUE constraint? → Ensures all values are different.
+What is CHECK constraint? → Restricts values based on condition.
+What is DEFAULT constraint? → Assigns default value if none provided.
+🔹 Normalization (Advanced)
+What is functional dependency? → Relationship between attributes.
+What is partial dependency? → Dependency on part of composite key.
+What is transitive dependency? → Indirect dependency via another attribute.
+What is BCNF? → Stronger version of 3NF.
+Why normalization? → To reduce redundancy and anomalies.
+🔹 SQL Querying (Advanced)
+Difference between WHERE and HAVING? → WHERE filters rows, HAVING filters groups.
+Difference between UNION and UNION ALL? → UNION removes duplicates, UNION ALL keeps duplicates.
+What is CROSS JOIN? → Cartesian product of two tables.
+What is SELF JOIN? → Table joined with itself.
+What is NATURAL JOIN? → Automatically joins common columns.
+What is subquery in FROM clause? → Inline view.
+🔹 Subqueries (Advanced)
+What is scalar subquery? → Returns single value.
+What is multi-row subquery? → Returns multiple rows.
+IN vs EXISTS? → IN compares values, EXISTS checks presence.
+ANY vs ALL difference? → ANY checks one, ALL checks all.
+🔹 Aggregate & Views
+Can HAVING be used without GROUP BY? → Yes, but rarely used.
+What is difference between COUNT() and COUNT(column)? → COUNT() counts all rows, COUNT(column) ignores NULLs.
+What is materialized view? → Physically stored view.
+Can we update a view? → Yes, if it is simple view.
+🔹 Triggers (Advanced)
+What is row-level trigger? → Executes for each row.
+What is statement-level trigger? → Executes once per statement.
+Can we have multiple triggers? → Yes, on same table.
+What is trigger event? → INSERT, UPDATE, DELETE operation.
+Why use trigger? → For automation and validation.
+🔹 Procedures (Advanced)
+Difference between procedure and function? → Function returns value, procedure may not.
+What is IN parameter? → Input parameter.
+What is OUT parameter? → Output parameter.
+What is INOUT parameter? → Both input and output.
+🔹 Cursors (Advanced)
+What is implicit cursor? → Automatically created by DBMS.
+What is explicit cursor? → Created by user.
+What is cursor attribute? → %FOUND, %NOTFOUND, %ROWCOUNT.
+What is %ROWCOUNT? → Number of rows processed.
+🔹 Transactions & Misc
+What is transaction? → Group of SQL operations.
+What is COMMIT? → Saves changes permanently.
+What is ROLLBACK? → Undo changes.
+What is SAVEPOINT? → Temporary point in transaction.
+What is ACID property? → Atomicity, Consistency, Isolation, Durability.
+🔹 Common Differences (Very Important)
+DELETE vs TRUNCATE? → DELETE removes rows with condition, TRUNCATE removes all quickly.
+DROP vs TRUNCATE? → DROP removes table, TRUNCATE removes data.
+JOIN vs UNION? → JOIN combines columns, UNION combines rows.
+Trigger vs Procedure? → Trigger auto, procedure manual.
+Cursor vs Loop? → Cursor processes rows from query.
+
+
+
+
+
+
+
+
+
+
+
+
+
+TOP 100 DBMS VIVA Q&A (1-LINE)
+🔹 Basics (1–10)
+What is DBMS? → Software to store and manage data.
+What is database? → Collection of related data.
+What is table? → Collection of rows and columns.
+What is record? → Row in a table.
+What is field? → Column in a table.
+What is schema? → Structure of database.
+What is instance? → Data at a particular time.
+What is data redundancy? → Duplicate data.
+What is data inconsistency? → Conflicting data.
+What is data independence? → Data separated from application.
+🔹 ER Model (11–20)
+What is ER model? → Conceptual design model.
+What is entity? → Real-world object.
+What is attribute? → Property of entity.
+Types of attributes? → Simple, composite, derived.
+What is key attribute? → Uniquely identifies entity.
+What is relationship? → Association between entities.
+Types of relationships? → 1:1, 1:M, M:N.
+What is weak entity? → Depends on strong entity.
+What is participation constraint? → Total or partial participation.
+What is cardinality? → Number of relationships.
+🔹 Relational Model (21–30)
+What is relation? → Table.
+What is tuple? → Row.
+What is attribute? → Column.
+What is domain? → Valid value set.
+What is degree? → Number of columns.
+What is cardinality? → Number of rows.
+What is relational schema? → Table structure.
+What is relational instance? → Table data.
+What is NULL? → Missing value.
+What is integrity constraint? → Rule for correctness.
+🔹 Keys (31–40)
+What is primary key? → Unique identifier.
+What is foreign key? → References another table.
+What is candidate key? → Possible primary key.
+What is super key? → Unique attribute set.
+What is alternate key? → Candidate key not chosen.
+What is composite key? → Multiple attributes key.
+What is surrogate key? → Artificial key.
+What is natural key? → Real-world key.
+What is unique key? → No duplicate values.
+What is NOT NULL? → No null values allowed.
+🔹 Normalization (41–50)
+What is normalization? → Removing redundancy.
+What is 1NF? → Atomic values only.
+What is 2NF? → No partial dependency.
+What is 3NF? → No transitive dependency.
+What is BCNF? → Stronger 3NF.
+What is functional dependency? → Attribute relation.
+What is partial dependency? → Depends on part of key.
+What is transitive dependency? → Indirect dependency.
+What is anomaly? → Data inconsistency problem.
+Types of anomalies? → Insert, update, delete.
+🔹 DDL (51–60)
+What is DDL? → Defines structure.
+CREATE? → Create table.
+ALTER? → Modify table.
+DROP? → Delete table.
+TRUNCATE? → Remove all rows.
+RENAME? → Rename table.
+Difference DROP vs TRUNCATE? → DROP deletes table, TRUNCATE deletes data.
+Can TRUNCATE rollback? → No.
+Does DROP remove structure? → Yes.
+Does ALTER affect data? → No (structure only).
+🔹 DML (61–70)
+What is DML? → Manipulates data.
+INSERT? → Add data.
+SELECT? → Retrieve data.
+UPDATE? → Modify data.
+DELETE? → Remove data.
+WHERE? → Condition filter.
+ORDER BY? → Sort data.
+LIKE? → Pattern matching.
+BETWEEN? → Range condition.
+IN? → Multiple value condition.
+🔹 SQL Queries (71–80)
+What is JOIN? → Combine tables.
+Types of JOIN? → INNER, LEFT, RIGHT, FULL.
+What is INNER JOIN? → Matching rows only.
+LEFT JOIN? → All left + matched right.
+RIGHT JOIN? → All right + matched left.
+What is CROSS JOIN? → Cartesian product.
+What is UNION? → Combine without duplicates.
+UNION ALL? → Includes duplicates.
+INTERSECT? → Common rows.
+What is constraint? → Data rule.
+🔹 Subqueries (81–85)
+What is subquery? → Query inside query.
+Nested subquery? → Executes once.
+Correlated subquery? → Executes per row.
+EXISTS? → Checks existence.
+ANY vs ALL? → ANY one match, ALL all match.
+🔹 Aggregate & Views (86–90)
+What is aggregate function? → Works on multiple rows.
+Examples? → COUNT, SUM, AVG, MAX, MIN.
+GROUP BY? → Groups rows.
+HAVING? → Filters groups.
+What is view? → Virtual table.
+🔹 Triggers (91–94)
+What is trigger? → Auto-executed SQL block.
+Types? → INSERT, UPDATE, DELETE.
+:NEW? → New value.
+:OLD? → Old value.
+🔹 Procedures & Cursors (95–100)
+What is procedure? → Stored SQL block.
+Advantage? → Reusability.
+What is cursor? → Row-by-row processing.
+Steps? → Declare, Open, Fetch, Close.
+%NOTFOUND? → No more rows.
+Why cursor? → Process each row individually.
