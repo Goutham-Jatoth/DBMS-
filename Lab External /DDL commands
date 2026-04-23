@@ -1,0 +1,164 @@
+Practicing DDL commands 
+
+
+
+Program 1: Student Table DDL Practice
+Step 1: Create Table
+CREATE TABLE Student (
+    RollNo INT PRIMARY KEY,
+    Name VARCHAR(30),
+    Age INT
+);
+Step 2: Insert Data
+INSERT INTO Student VALUES (101, 'Ravi', 20);
+INSERT INTO Student VALUES (102, 'Anu', 19);
+INSERT INTO Student VALUES (103, 'Kiran', 21);
+Step 3: View Data
+SELECT * FROM Student;
+Step 4: Add Column
+ALTER TABLE Student ADD Dept VARCHAR(10);
+Step 5: Update New Column
+UPDATE Student SET Dept='CSE' WHERE RollNo=101;
+UPDATE Student SET Dept='ECE' WHERE RollNo=102;
+UPDATE Student SET Dept='EEE' WHERE RollNo=103;
+Step 6: Modify Column
+ALTER TABLE Student MODIFY Name VARCHAR(50);
+Step 7: Drop Column
+ALTER TABLE Student DROP Age;
+Step 8: Rename Table
+RENAME Student TO Student_Details;
+Step 9: Display Data
+SELECT * FROM Student_Details;
+Step 10: Truncate Table
+TRUNCATE TABLE Student_Details;
+
+
+
+
+
+
+
+
+
+
+
+
+
+Program 2: Employee Table DDL Practice
+Step 1: Create Table
+CREATE TABLE Employee (
+    EmpID INT PRIMARY KEY,
+    Name VARCHAR(30),
+    Salary INT
+);
+Step 2: Insert Data
+INSERT INTO Employee VALUES (1, 'Ramesh', 30000);
+INSERT INTO Employee VALUES (2, 'Sita', 25000);
+Step 3: Add Column
+ALTER TABLE Employee ADD Dept VARCHAR(10);
+Step 4: Update Data
+UPDATE Employee SET Dept='HR' WHERE EmpID=1;
+UPDATE Employee SET Dept='IT' WHERE EmpID=2;
+Step 5: Modify Column
+ALTER TABLE Employee MODIFY Salary FLOAT;
+Step 6: Drop Column
+ALTER TABLE Employee DROP Dept;
+Step 7: Rename Table
+RENAME Employee TO Emp_Details;
+Step 8: Drop Table
+DROP TABLE Emp_Details;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Program 3: Product Table with Constraints
+Step 1: Create Table
+CREATE TABLE Product (
+    ProductID INT PRIMARY KEY,
+    Name VARCHAR(30),
+    Price INT CHECK (Price > 0)
+);
+Step 2: Insert Data
+INSERT INTO Product VALUES (1, 'Pen', 10);
+INSERT INTO Product VALUES (2, 'Book', 50);
+Step 3: Try Invalid Data (Constraint)
+INSERT INTO Product VALUES (3, 'Bag', -100); -- Error
+Step 4: Add Column
+ALTER TABLE Product ADD Quantity INT;
+Step 5: Modify Column
+ALTER TABLE Product MODIFY Name VARCHAR(50);
+Step 6: Drop Table
+DROP TABLE Product;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Program 4: Department Table Practice
+Step 1: Create Table
+CREATE TABLE Department (
+    DeptID INT PRIMARY KEY,
+    DeptName VARCHAR(30)
+);
+Step 2: Insert Data
+INSERT INTO Department VALUES (10, 'CSE');
+INSERT INTO Department VALUES (20, 'ECE');
+Step 3: Add Column
+ALTER TABLE Department ADD Location VARCHAR(30);
+Step 4: Update Data
+UPDATE Department SET Location='Block A' WHERE DeptID=10;
+UPDATE Department SET Location='Block B' WHERE DeptID=20;
+Step 5: Drop Column
+ALTER TABLE Department DROP Location;
+Step 6: Truncate Table
+TRUNCATE TABLE Department;
+
+
+
+
+
+
+
+
+
+
+Program 5: College Table Practice
+Step 1: Create Table
+CREATE TABLE College (
+    CollegeID INT PRIMARY KEY,
+    CollegeName VARCHAR(50)
+);
+Step 2: Insert Data
+INSERT INTO College VALUES (1, 'ABC College');
+INSERT INTO College VALUES (2, 'XYZ College');
+Step 3: Rename Table
+RENAME College TO College_Info;
+Step 4: Display Data
+SELECT * FROM College_Info;
+Step 5: Drop Table
+DROP TABLE College_Info;
