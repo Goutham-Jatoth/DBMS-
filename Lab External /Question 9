@@ -1,0 +1,72 @@
+9. Procedures 
+
+
+Stored Procedures
+1. Aim
+
+To create and execute stored procedures for performing INSERT, UPDATE, and DELETE operations on a table.
+
+2. Theory
+
+A stored procedure is a precompiled SQL block stored in the database that can be executed multiple times.
+
+Improves performance
+Provides reusability
+Enhances security
+3. Program / Procedure
+Step 1: Create Table
+CREATE TABLE Student (
+    RollNo INT PRIMARY KEY,
+    Name VARCHAR(30),
+    Dept VARCHAR(10)
+);
+4. Create Procedures
+a) Procedure to Insert Data
+CREATE OR REPLACE PROCEDURE AddStudent(
+    p_RollNo INT,
+    p_Name VARCHAR(30),
+    p_Dept VARCHAR(10)
+)
+AS
+BEGIN
+    INSERT INTO Student VALUES (p_RollNo, p_Name, p_Dept);
+END;
+b) Procedure to Update Data
+CREATE OR REPLACE PROCEDURE UpdateDept(
+    p_RollNo INT,
+    p_Dept VARCHAR(10)
+)
+AS
+BEGIN
+    UPDATE Student
+    SET Dept = p_Dept
+    WHERE RollNo = p_RollNo;
+END;
+c) Procedure to Delete Data
+CREATE OR REPLACE PROCEDURE DeleteStudent(
+    p_RollNo INT
+)
+AS
+BEGIN
+    DELETE FROM Student
+    WHERE RollNo = p_RollNo;
+END;
+5. Execute Procedures
+Insert Records
+EXEC AddStudent(101, 'Ravi', 'CSE');
+EXEC AddStudent(102, 'Anu', 'ECE');
+Display Data
+SELECT * FROM Student;
+Update Record
+EXEC UpdateDept(101, 'EEE');
+Delete Record
+EXEC DeleteStudent(102);
+Verify Final Data
+SELECT * FROM Student;
+6. Output (What to Write)
+Procedures created successfully
+Data inserted, updated, and deleted using procedures
+Results verified using SELECT
+7. Result
+
+Stored procedures are successfully created and executed to perform database operations.
