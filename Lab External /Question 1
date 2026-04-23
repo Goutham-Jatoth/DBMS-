@@ -1,0 +1,105 @@
+1. Concept design with E-R Model 
+
+Concept Design with E–R Model
+1. Introduction
+
+Conceptual design is the first step in database design, where we identify:
+
+What data is needed
+How different data items are related
+
+For this, we use the Entity–Relationship (E–R) Model, which represents data in a simple graphical form.
+
+2. What is E–R Model?
+
+The Entity–Relationship (E–R) Model is a high-level data model used to design databases by representing:
+
+Entities (objects)
+Attributes (properties)
+Relationships (connections)
+
+It was proposed by Peter Chen in 1976.
+
+3. Components of E–R Model
+a) Entity
+
+An entity is a real-world object that can be uniquely identified.
+
+👉 Examples: Student, Teacher, Course
+
+Types of Entities:
+
+Strong Entity: Has its own primary key (Student)
+Weak Entity: Depends on another entity (Dependent)
+b) Attribute
+
+Attributes are the properties of an entity.
+
+👉 Example:
+Student → RollNo, Name, Age
+
+Types:
+
+Simple: Cannot be divided (Age)
+Composite: Can be divided (Name → First, Last)
+Derived: Calculated (Age from DOB)
+Multivalued: Multiple values (Phone numbers)
+Key Attribute: Unique identifier (RollNo)
+c) Relationship
+
+A relationship shows how two or more entities are connected.
+
+👉 Example:
+Student enrolls in Course
+
+d) Cardinality
+
+Cardinality defines how many entities are related.
+
+One-to-One (1:1) → One student has one ID card
+One-to-Many (1:M) → One teacher teaches many students
+Many-to-Many (M:N) → Many students enroll in many courses
+e) Participation
+Total Participation: Every entity must participate
+Partial Participation: Some entities may not participate
+4. Steps in Conceptual Design using E–R Model
+Identify entities
+Identify attributes
+Choose primary keys
+Identify relationships
+Define cardinality
+Draw E–R diagram
+Convert into tables
+5. Example (Student–Course System)
+Entities:
+Student
+Course
+Attributes:
+Student → RollNo, Name, Dept
+Course → CourseID, Title
+Relationship:
+Enrolls
+Cardinality:
+Many-to-Many (M:N)
+E–R Diagram (Explanation)
+Student (rectangle)
+Course (rectangle)
+Enrolls (diamond)
+Attributes (ovals) connected to entities
+6. Conversion to Relational Tables
+Student(RollNo, Name, Dept)
+
+Course(CourseID, Title)
+
+Enroll(RollNo, CourseID)
+RollNo → Primary Key in Student
+CourseID → Primary Key in Course
+Enroll table uses both as Foreign Keys
+7. Advantages of E–R Model
+Easy to understand
+Represents real-world data clearly
+Helps in database design
+Reduces errors
+8. Conclusion
+
+The E–R model helps in designing a clear and structured database by showing entities, attributes, and relationships, which can later be converted into tables.
