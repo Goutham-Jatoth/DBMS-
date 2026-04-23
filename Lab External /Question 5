@@ -1,0 +1,54 @@
+5. Practicing DML commands 
+
+
+
+Practicing DML Commands
+1. Aim
+
+To perform DML (Data Manipulation Language) operations such as INSERT, SELECT, UPDATE, and DELETE on a table.
+
+2. Theory
+
+DML commands are used to manipulate data in a database.
+Common DML commands:
+
+INSERT → Add data
+SELECT → Retrieve data
+UPDATE → Modify data
+DELETE → Remove data
+3. Program / Procedure
+Step 1: Create Table
+CREATE TABLE Student (
+    RollNo INT PRIMARY KEY,
+    Name VARCHAR(30),
+    Dept VARCHAR(10),
+    Age INT
+);
+Step 2: Insert Data
+INSERT INTO Student VALUES (101, 'Ravi', 'CSE', 20);
+INSERT INTO Student VALUES (102, 'Anu', 'ECE', 19);
+INSERT INTO Student VALUES (103, 'Kiran', 'EEE', 21);
+Step 3: Display All Records
+SELECT * FROM Student;
+Step 4: Display Specific Columns
+SELECT Name, Dept FROM Student;
+Step 5: Use WHERE Condition
+SELECT * FROM Student WHERE Dept = 'CSE';
+Step 6: Use ORDER BY
+SELECT * FROM Student ORDER BY Age DESC;
+Step 7: Update Data
+UPDATE Student SET Age = 22 WHERE RollNo = 101;
+Step 8: Verify Update
+SELECT * FROM Student;
+Step 9: Delete Record
+DELETE FROM Student WHERE RollNo = 102;
+Step 10: Verify Deletion
+SELECT * FROM Student;
+4. Output (What to Write)
+Records inserted successfully
+Data retrieved using SELECT
+Data updated and verified
+Record deleted successfully
+5. Result
+
+DML commands are successfully executed to insert, retrieve, update, and delete data.
